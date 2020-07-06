@@ -1,0 +1,12 @@
+sudo bash -c 'wget https://d1b0l86ne08fsf.cloudfront.net/2.2.0/dist-packages/debian/armhf/mender-client_2.2.0-1_armhf.deb && \
+DEBIAN_FRONTEND=noninteractive dpkg -i --force-confdef --force-confold mender-client_2.2.0-1_armhf.deb && \
+DEVICE_TYPE="raspberrypi4" && \
+TENANT_TOKEN="eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW5kZXIudGVuYW50IjoiNWVmZjMxNDlhOThhN2M1NWFmNTAyYmMyIiwiaXNzIjoiTWVuZGVyIiwic3ViIjoiNWVmZjMxNDlhOThhN2M1NWFmNTAyYmMyIn0.A_krVUf0D_uavhP4ImaXy4lddqUzjF2gto4yBh0x33jBDZoGVI9Zjy2_lmDOkOu97wG2-poBGKGtX2PTAfWErDDOPIVB7juSRwyt_Xo7Ek4kqYjYrCB_4GY7H-6ujfE4ypq8qbQG0r4FO8KaO24CJwj5IDhojX4KlpuawzpttN2NlWuvFbQVb8hGTsJEW6kAWU4niZvHcGIn399AGmEO8tt_Zq1mszyIB1unNoU3OWkix7TIwxdOvcKa2mHLwVAdoHDYMWNcXUtHGz-udaYp8qDiIJnILaVmi74e-lTllT4uDzrQ0tLcmHqDYeB_W6AOEMAUfVVP6Cz62um4jPaa1nzjTiibOc56xaLCe6u2zbZ4ckTcmyoGy9JjZBHa8-7Ox8SkxRMtf7kZuezSgxAzpntS6D2BAMRZgECVeWZyWn0SLO3T_ThlezVfhMReBzAHml-SixsjW8tXzeYQU-xxuignbjBaE836jobd6lyVOsK2u48XlEHGR2lwf1Ak4qFP" && \
+mender setup \
+  --device-type $DEVICE_TYPE \
+  --quiet --hosted-mender \
+  --tenant-token $TENANT_TOKEN \
+  --retry-poll 30 \
+  --update-poll 5 \
+  --inventory-poll 5 && \
+systemctl restart mender-client'
